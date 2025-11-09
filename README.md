@@ -112,7 +112,7 @@ tree-sitter parse examples/main.prime
 
 ---
 
-## 🧱 Building for Multiple Languages
+## Building for Multiple Languages
 
 To build and test bindings for all supported environments:
 
@@ -130,7 +130,7 @@ make c      # Build C library
 
 ---
 
-## 🔁 Updating After Grammar Changes
+## Updating After Grammar Changes
 
 After modifying `grammar.js`, always do:
 
@@ -151,7 +151,7 @@ git commit -m "chore(grammar): regenerate parser after updates"
 
 ---
 
-## 🧩 Debugging Tips
+## Debugging Tips
 
 * Run `tree-sitter parse yourfile.prime -d` for debug output.
 * Use Neovim's `:TSPlaygroundToggle` to inspect live syntax nodes.
@@ -159,7 +159,7 @@ git commit -m "chore(grammar): regenerate parser after updates"
 
 ---
 
-## 🪶 Notes
+## Notes
 
 * Keep grammar.js as the source of truth; **never edit parser.c manually**.
 * Regenerate parser after *any* grammar rule change.
