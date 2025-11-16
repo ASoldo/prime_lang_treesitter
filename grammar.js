@@ -33,7 +33,7 @@ module.exports = grammar({
     [$.statement, $.expression],
     [$.expression, $.struct_literal],
     [$.return_type, $.tuple_type],
-    [$.type_expression, $.scoped_identifier],
+    [$.type_expression, $.module_path],
   ],
 
   rules: {
@@ -57,7 +57,10 @@ module.exports = grammar({
       ';'
     ),
 
-    module_path: $ => $.scoped_identifier,
+    module_path: $ => seq(
+      field('head', $.identifier),
+      repeat(seq('::', field('tail', $.identifier)))
+    ),
 
     item: $ => seq(
       optional('pub'),
@@ -410,13 +413,8 @@ module.exports = grammar({
       $.array_type,
       $.tuple_type,
       $.generic_type,
-      $.scoped_identifier,
+      $.module_path,
       $.identifier
-    ),
-
-    scoped_identifier: $ => seq(
-      $.identifier,
-      repeat(seq('::', $.identifier))
     ),
 
     pointer_type: $ => seq('*', optional('mut'), $.type_expression),
