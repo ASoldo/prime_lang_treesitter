@@ -290,7 +290,11 @@ module.exports = grammar({
       'match',
       field('value', $.expression),
       '{',
-      commaSep($.match_arm),
+      optional(seq(
+        $.match_arm,
+        repeat(seq(choice(',', ';'), $.match_arm)),
+        optional(choice(',', ';'))
+      )),
       '}'
     ),
 
