@@ -420,14 +420,14 @@ module.exports = grammar({
     parenthesized_expression: $ => seq('(', $.expression, ')'),
 
     pattern: $ => choice(
-      $.identifier,
       '_',
       $.literal,
       $.enum_pattern,
       $.tuple_pattern,
       $.map_pattern,
       $.struct_pattern,
-      $.slice_pattern
+      $.slice_pattern,
+      $.identifier
     ),
 
     enum_pattern: $ => seq(

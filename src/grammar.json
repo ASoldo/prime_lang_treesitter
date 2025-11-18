@@ -2588,10 +2588,6 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
           "type": "STRING",
           "value": "_"
         },
@@ -2618,6 +2614,10 @@
         {
           "type": "SYMBOL",
           "name": "slice_pattern"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
