@@ -215,6 +215,8 @@ module.exports = grammar({
       $.defer_statement,
       $.break_statement,
       $.continue_statement,
+      $.match_expression,
+      $.if_expression,
       $.expression_statement,
       $.block
     ),

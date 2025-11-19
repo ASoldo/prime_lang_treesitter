@@ -1066,6 +1066,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "match_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "expression_statement"
         },
         {

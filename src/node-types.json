@@ -174,7 +174,15 @@
         "named": true
       },
       {
+        "type": "if_expression",
+        "named": true
+      },
+      {
         "type": "let_statement",
+        "named": true
+      },
+      {
+        "type": "match_expression",
         "named": true
       },
       {
