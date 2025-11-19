@@ -3389,7 +3389,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "module_path"
+          "name": "type_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_identifier"
         },
         {
           "type": "SYMBOL",
@@ -3543,7 +3547,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "type_path"
           }
         },
         {
@@ -3706,7 +3710,16 @@
       "enum_pattern"
     ],
     [
+      "pattern",
+      "enum_pattern",
+      "type_expression"
+    ],
+    [
       "module_path"
+    ],
+    [
+      "type_path",
+      "type_expression"
     ]
   ],
   "precedences": [],

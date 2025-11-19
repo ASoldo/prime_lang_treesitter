@@ -33,7 +33,9 @@ module.exports = grammar({
     [$.statement, $.expression],
     [$.return_type, $.tuple_type],
     [$.pattern, $.enum_pattern],
+    [$.pattern, $.enum_pattern, $.type_expression],
     [$.module_path],
+    [$.type_path, $.type_expression],
   ],
 
   rules: {
@@ -524,7 +526,8 @@ module.exports = grammar({
       $.array_type,
       $.tuple_type,
       $.generic_type,
-      $.module_path,
+      $.type_path,
+      $.type_identifier,
       $.identifier
     ),
 
@@ -534,7 +537,7 @@ module.exports = grammar({
     array_type: $ => seq('[', $.integer_literal, ']', $.type_expression),
     tuple_type: $ => seq('(', commaSep1($.type_expression), ')'),
     generic_type: $ => seq(
-      field('name', $.identifier),
+      field('name', $.type_path),
       '[',
       commaSep1($.type_expression),
       ']'
