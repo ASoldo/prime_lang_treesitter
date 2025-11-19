@@ -208,6 +208,7 @@ module.exports = grammar({
 
     statement: $ => choice(
       $.let_statement,
+      $.assign_statement,
       $.return_statement,
       $.while_statement,
       $.for_statement,
@@ -233,6 +234,13 @@ module.exports = grammar({
           optional(seq('=', field('value', $.expression)))
         )
       ),
+      ';'
+    ),
+
+    assign_statement: $ => seq(
+      field('target', $.expression),
+      '=',
+      field('value', $.expression),
       ';'
     ),
 
