@@ -223,13 +223,13 @@ module.exports = grammar({
       optional('mut'),
       choice(
         seq(
-          field('type', $.type_expression),
-          field('name', $.identifier),
+          field('pattern', $.pattern),
+          optional(seq(':', field('annotation', $.type_expression))),
           optional(seq('=', field('value', $.expression)))
         ),
         seq(
-          field('pattern', $.pattern),
-          optional(seq(':', field('annotation', $.type_expression))),
+          field('type', $.type_expression),
+          field('name', $.identifier),
           optional(seq('=', field('value', $.expression)))
         )
       ),
