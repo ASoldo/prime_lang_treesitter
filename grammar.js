@@ -34,9 +34,12 @@ module.exports = grammar({
     [$.return_type, $.tuple_type],
     [$.pattern, $.enum_pattern],
     [$.pattern, $.enum_pattern, $.type_expression],
-    [$.module_path, $.type_path, $.expression],
+    [$.type_path, $.enum_pattern],
+    [$.type_path, $.enum_pattern, $.type_expression],
+    [$.type_path, $.expression],
     [$.expression, $.struct_literal],
     [$.module_path],
+    [$.type_path, $.type_expression],
   ],
 
   rules: {
@@ -60,15 +63,15 @@ module.exports = grammar({
       ';'
     ),
 
-    module_path: $ => prec(20, seq(
+    module_path: $ => prec(1, seq(
       field('head', choice($.identifier, $.type_identifier)),
-      repeat(seq('.', field('tail', choice($.identifier, $.type_identifier))))
+      repeat(seq(choice('::', '.'), field('tail', choice($.identifier, $.type_identifier))))
     )),
 
-    type_path: $ => prec(19, seq(
-      optional(seq($.module_path, '.')),
+    type_path: $ => seq(
+      optional(seq($.module_path, '::')),
       $.type_identifier
-    )),
+    ),
 
     item: $ => seq(
       optional('pub'),
@@ -516,7 +519,7 @@ module.exports = grammar({
     ),
 
     enum_pattern: $ => seq(
-      optional(seq(field('enum', $.module_path), '::')),
+      optional(seq(field('enum', $.module_path), choice('::', '.', ':'))),
       field('variant', choice($.identifier, $.type_identifier)),
       optional(seq('(', commaSep($.pattern), ')'))
     ),

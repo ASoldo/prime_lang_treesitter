@@ -136,7 +136,7 @@
     },
     "module_path": {
       "type": "PREC",
-      "value": 20,
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
@@ -163,8 +163,17 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "."
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "::"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    }
+                  ]
                 },
                 {
                   "type": "FIELD",
@@ -190,38 +199,34 @@
       }
     },
     "type_path": {
-      "type": "PREC",
-      "value": 19,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "module_path"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "."
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "type_identifier"
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "module_path"
+                },
+                {
+                  "type": "STRING",
+                  "value": "::"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_identifier"
+        }
+      ]
     },
     "item": {
       "type": "SEQ",
@@ -3021,8 +3026,21 @@
                   }
                 },
                 {
-                  "type": "STRING",
-                  "value": "::"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "::"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ":"
+                    }
+                  ]
                 }
               ]
             },
@@ -4059,7 +4077,15 @@
       "type_expression"
     ],
     [
-      "module_path",
+      "type_path",
+      "enum_pattern"
+    ],
+    [
+      "type_path",
+      "enum_pattern",
+      "type_expression"
+    ],
+    [
       "type_path",
       "expression"
     ],
@@ -4069,6 +4095,10 @@
     ],
     [
       "module_path"
+    ],
+    [
+      "type_path",
+      "type_expression"
     ]
   ],
   "precedences": [],
