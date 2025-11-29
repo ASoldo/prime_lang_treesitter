@@ -1929,6 +1929,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "await_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "async_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "call_expression"
         },
         {
@@ -2774,6 +2782,40 @@
           }
         ]
       }
+    },
+    "await_expression": {
+      "type": "PREC_RIGHT",
+      "value": 13,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "await"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "async_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "async"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          }
+        }
+      ]
     },
     "call_expression": {
       "type": "PREC_LEFT",
